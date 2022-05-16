@@ -76,7 +76,9 @@
                             <div class="price">10$</div>
                         </div>
                         <p class="desc">aaaakfij jdjidfhfd dfhffhff hfdihf</p>
-                        <button class="order-btn">order</button>
+                        <button class="order-btn" data-order="apple-pie">
+                            order
+                        </button>
                     </div>
                     <!--end card-->
                     <!--start card-->
@@ -93,7 +95,9 @@
                             <div class="price">10$</div>
                         </div>
                         <p class="desc">aaaakfij jdjidfhfd dfhffhff hfdihf</p>
-                        <button class="order-btn">order</button>
+                        <button class="order-btn" data-order="cheese-cake">
+                            order
+                        </button>
                     </div>
                     <!--end card-->
                     <!--start card-->
@@ -110,11 +114,37 @@
                             <div class="price">10$</div>
                         </div>
                         <p class="desc">aaaakfij jdjidfhfd dfhffhff hfdihf</p>
-                        <button class="order-btn">order</button>
+                        <button class="order-btn" data-order="pizza">
+                            order
+                        </button>
                     </div>
                     <!--end card-->
                 </div>
             </div>
         </section>
+        <script>
+            window.addEventListener("DOMContentLoaded", function (e) {
+                const orderButtons =
+                    document.querySelectorAll("button[data-order]");
+                orderButtons.forEach(function (button) {
+                    button.addEventListener("click", function (e) {
+                        const button = e.currentTarget;
+                        const container = button.parentNode;
+                        const order = {
+                            id: container.getAttribute("data-order"),
+                            title: container.querySelector(".title").innerText,
+                            price: container.querySelector(".price").innerText,
+                            desc: container.querySelector(".desc").innerText,
+                        };
+                        localStorage.setItem("order", JSON.stringify(order));
+                        const url = window.location.href.replace(
+                            "pies.html",
+                            "order.html"
+                        );
+                        window.location.href = url;
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
