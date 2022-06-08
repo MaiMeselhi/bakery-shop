@@ -19,7 +19,7 @@
                 <a class="navbar-brand" href="#">
                     <!-- Logo Image -->
                     <img
-                        src="assets/images/logo.jpg"
+                        src="/assets/images/logo.jpg"
                         width="75"
                         alt="logo"
                         class="d-inline-block align-middle mx-2 logo"
@@ -58,8 +58,98 @@
             </div>
         </nav>
         <!-- end navbar -->
-        <!--start form-->
-        <form action="http://localhost:7071/api/post" method="POST"></form>
-        <!--end form---->
+
+        <main>
+            <!-- start pie details-->
+            <div class="pie">
+                <img src="" />
+                <div class="columns">
+                    <div class="title"></div>
+                    <div class="price"></div>
+                </div>
+                <p class="desc"></p>
+            </div>
+
+            <!--end pie details-->
+            <!--start form-->
+            <form action="contact-info.html" method="get">
+                <input type="hidden" id="pie-order" name="pie-order" />
+                <div class="input-group">
+                    <div><label for="first-name">first name</label></div>
+                    <div>
+                        <input type="text" name="first-name" id="first-name" />
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="address">address</label>
+                    </div>
+                    <div>
+                        <input type="text" name="address" id="address" />
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div>
+                        <label for="state">state</label>
+                    </div>
+                    <div>
+                        <select name="state" id="state">
+                            <option value="" selected>select one</option>
+                            <option value="alex">alex</option>
+                            <option value="cairo">cairo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="postal-code">postal code</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            name="postal-code"
+                            id="postal-code"
+                        />
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="comments">comments</label>
+                    </div>
+                    <div>
+                        <textarea
+                            id="comments"
+                            name="comments"
+                            rows="10"
+                            cols="30 "
+                        ></textarea>
+                    </div>
+                </div>
+                <button type="reset">reset</button>
+                <button type="submit">order</button>
+            </form>
+            <!--end form---->
+        </main>
+        <script>
+            window.addEventListener("DOMContentLoaded", function (e) {
+                const order = localStorage.getItem("order");
+                if (order) {
+                    const orderPie = JSON.parse(order);
+                    const orderInput = document.querySelector("#order-pie");
+                    orderInput.value = order;
+                    const pie = document.querySelector(".pie");
+                    const title = pie.querySelector(".title");
+                    const price = pie.querySelector(".price");
+                    const desc = pie.querySelector(".desc");
+
+                    title.innerText = orderPie.title;
+                    price.innerText = orderPie.price;
+                    desc.innerText = orderPie.desc;
+                    const img = pie.querySelector("img");
+                    img.setAttribute("src", `assets/images/${orderPie.id}.jpg`);
+                }
+            });
+        </script>
     </body>
 </html>
